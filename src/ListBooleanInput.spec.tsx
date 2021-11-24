@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider } from '@material-ui/styles';
 import { createTheme } from '@material-ui/core/styles';
-import { DataProviderContext, ResourceContextProvider} from 'ra-core';
+import { DataProviderContext, ResourceContextProvider } from 'ra-core';
 import { List, SingleFieldList } from 'react-admin';
 import { renderWithRedux } from 'ra-test';
 import ListBooleanInput from './ListBooleanInput';
@@ -10,7 +9,6 @@ import ListBooleanInput from './ListBooleanInput';
 const theme = createTheme();
 
 describe('<SimpleList />', () => {
-
   const defaultProps = {
     hasCreate: true,
     hasEdit: true,
@@ -41,19 +39,19 @@ describe('<SimpleList />', () => {
   };
 
   it('should render state according to data', async () => {
-    const dataProvider = {
+    const dataProvider: any = {
       getList: () =>
         Promise.resolve({
-          data: [
-            { id: 1, text: 'the text', state: true },
-          ],
+          data: [{ id: 1, text: 'the text', state: true }],
           total: 2,
         }),
-      update: jest.fn(() => Promise.resolve({
-        data: { id: 1, state: false }
-      } as any)),
+      update: jest.fn(() =>
+        Promise.resolve({
+          data: { id: 1, state: false },
+        } as any)
+      ),
     };
-    let {container, getByTitle, getByLabelText} = {}
+    let container: HTMLElement | undefined;
 
     await act(async () => {
       const res = renderWithRedux(
@@ -62,7 +60,7 @@ describe('<SimpleList />', () => {
             <DataProviderContext.Provider value={dataProvider}>
               <List {...defaultProps} empty={false}>
                 <SingleFieldList>
-                  <ListBooleanInput source="state"/>
+                  <ListBooleanInput source="state" />
                 </SingleFieldList>
               </List>
             </DataProviderContext.Provider>
@@ -70,19 +68,17 @@ describe('<SimpleList />', () => {
         </ThemeProvider>,
         defaultStateForList
       );
-      container = res.container
-    })
+      container = res.container;
+    });
 
-    const first = container.querySelector(
-      '[href="/posts/1"]'
-    ) as HTMLInputElement;
+    const first = container?.querySelector('[href="/posts/1"]') as HTMLInputElement;
 
-    const input = first.querySelector(
-      'input'
-    ) as HTMLInputElement;
-    
+    const input = first.querySelector('input') as HTMLInputElement;
+
     expect(input.checked).toBe(true);
-    await act(async () => fireEvent.click(input));
+    await act(async () => {
+      fireEvent.click(input);
+    });
     expect(input.checked).toBe(false);
   });
 });

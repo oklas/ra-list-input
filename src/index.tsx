@@ -1,5 +1,3 @@
-import ListBooleanInput from './ListBooleanInput';
+import { default as ListBooleanInput } from './ListBooleanInput';
 
-export {
-  ListBooleanInput 
-}
+export { ListBooleanInput };
