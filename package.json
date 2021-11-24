@@ -44,6 +44,7 @@
     "prettier": "2.4.1",
     "query-string": "^7.0.1",
     "ra-core": "^3.19.1",
+    "ra-test": "^3.19.1",
     "react": "^17.0.2",
     "react-admin": "^3.19.1",
     "rimraf": "3.0.2",
