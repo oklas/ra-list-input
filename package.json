@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/oklas/ra-list-input",
   "peerDependencies": {
-    "react-admin": "^3.0.0"
+    "react-admin": ">=3.13.4"
   },
   "devDependencies": {
     "@testing-library/react": "^12.1.2",
