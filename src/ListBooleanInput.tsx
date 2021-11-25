@@ -23,10 +23,10 @@ const ListBooleanInput: React.FC<BooleanFieldProps> = (props) => {
     {
       type: 'update',
       resource,
-      payload: { data: { id, [source || '']: !value } },
+      payload: { id, data: { [source || '']: !value } },
     },
     {
-      mutationMode: 'undoable',
+      mutationMode: 'pessimistic',
       onSuccess: refresh,
       onFailure: (error) => notify(`Error: ${error.message}`, 'warning'),
     }
